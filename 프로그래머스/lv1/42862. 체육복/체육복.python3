@@ -1,0 +1,14 @@
+def solution(n, lost, reserve):
+    # Preprocessing Array
+    temp_reserve = set(reserve)-set(lost)
+    temp_lost = set(lost)-set(reserve)
+    
+    # Search (Greedy)
+    for value in temp_reserve:
+        # Check Left Student
+        if value-1 in temp_lost:
+            temp_lost.remove(value-1)
+        # Check Right Student
+        elif value+1 in temp_lost:
+            temp_lost.remove(value+1)
+    return n-len(temp_lost)
